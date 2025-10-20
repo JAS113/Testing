@@ -1,0 +1,81 @@
+body {
+    background-color:azure;
+    width: 80%;
+    margin-left: 10%;
+}
+
+
+/* Sets up the border around the top box and positions it on the page*/
+#pageTitle, #navBar {
+    background-color: antiquewhite;
+    border-style: solid;
+}
+
+/* Sets up the page title portion of the top box */
+#pageTitle {
+    text-align: center;
+    border-bottom: none;
+    font-size: 600%;
+    padding-bottom: 1rem;
+}
+
+
+/* Sets up the navigation bar (lower portion of the top box) */
+#navBar {
+    border-top: none;
+    display: flex;
+    justify-content: center;
+}
+
+/*Styles the individual links in the navigation bar*/
+.navLinks {
+    padding: 1rem;
+    margin-left: 2rem;
+}
+
+/*Assigns settings to the steps container as a whole*/
+#steps {
+    
+}
+
+/*Assigns style to the even-numbered steps */
+.even {
+    padding-bottom: 2em;
+    padding-top: 2em;
+
+}
+
+/*Assigns style to the odd-numbered steps */
+.odd {
+
+    padding-bottom: 2em;
+    padding-top: 2em;
+    text-align: right;
+}
+
+/* Sets up the horizontal rule under the even-numbered headings */
+.even hr {
+    width: 20%;
+    margin-left: 0px;
+}
+
+/* Sets up the horizontal rule under the odd-numbered headings */
+.odd hr {
+    width: 20%;
+    margin-right: 0px;
+}
+
+#pageLayout {
+    display:grid;
+    grid-template-columns: 1fr 1fr;
+    
+}
+
+#leftColumn, #rightColumn {
+    padding: 2em;
+    border-style: dashed;
+}
+
+#leftColumn {
+
+}

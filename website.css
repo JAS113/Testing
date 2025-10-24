@@ -111,16 +111,22 @@ footer {
 }
 
 #leftColumn {
-    
+    display: grid;
+    grid-template-rows: 1fr 8fr;
 }
 
 #leftColumnTitle {
+    background-color: white;
+    border-style: solid;
+    border-color:black;
 
 }
 
 #leftColumnContent {
     border-style: solid;
-    background-color: rgb(180, 239, 180);
+    border-top: none;
+    background-color: white;
+    padding: 10px;
 }
 
 

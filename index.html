@@ -1,6 +1,11 @@
+<!--Should be present on all pages for uniformity.-->
+
+<!--Sets up the language and tells the page to render HTML-->
 <!DOCTYPE html>
 <html lang="en">
 
+<!--Head section contains links to relevant CSS pages. Sets tab title and 
+    viewport settings.-->
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -8,10 +13,15 @@
     <title>My Website</title>
 </head>
 
+<!--Body section contains page content.-->
 <body>
+
+    <!--These two sections make up a single box containing the page title at the top
+        and the navigation bar underneath.-->
     <div id="pageTitle">
         Page Title Here
     </div>
+
     <nav id="navBar">
         <span class="navLinks"><a href=deploy.html>Click here</a></span>
         <span class="navLinks"><a href=deploy.html>Click here</a></span>
@@ -20,11 +30,49 @@
         <span class="navLinks"><a href=deploy.html>Click here</a></span>
 
     </nav>
-    <div id="pageLayout">
-    <span id="leftColumn">Left Column</span>
-    <span id="rightColumn">Right Column</span>
+
+<!--Individual page content below-->
+
+    <!--Contains all the elements of the page.-->
+    <div id="indexPageLayout">
+
+        <!--Sets up the left column. This contains substantial pieces of text.-->
+        <div id="leftColumn">
+            <div id="leftColumnTitle">Title</div>
+            <div id="leftColumnContent">1</div>
+        </div>
+
+        <!--Sets up the right column. This contains snippets of recent posts.-->
+        <div id="rightColumn">
+            <div class="rightColumnContent">
+                <div class="rightColumnTitle">Recent</div>
+                <hr>
+
+                <div class="rightIndividualTitle">Title</div>
+                <br> 
+                <div class="rightIndividualContent">Content</div>
+                <hr>
+                
+                <div class="rightIndividualTitle">Title</div>
+                <br> 
+                <div class="rightIndividualContent">Content</div>
+                <hr>
+
+                <div class="rightIndividualTitle">Title</div>
+                <br> 
+                <div class="rightIndividualContent">Content</div>
+                <hr>
+                
+                <div class="morePosts"><a href="">More</a></div>
+            </div>
+        </div>
     </div>
 
 </body>
+
+<!--Should be on all pages for uniformity-->
+<footer>
+    Things go here
+</footer>
 
 </html>

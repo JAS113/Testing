@@ -1,3 +1,7 @@
+/*Following should be present on all pages for uniformity.*/
+
+/*Applies to the entire body of the page. Sets up the background colour 
+  and the central positioning.*/
 body {
     background-color:azure;
     width: 80%;
@@ -5,13 +9,26 @@ body {
 }
 
 
-/* Sets up the border around the top box and positions it on the page*/
+/*Sets up the footer at the bottom of the page. Should contain copyrights etc.*/
+footer {
+    text-align: center;
+    font-size: 1em;
+    padding: 1em;
+    border-style: dashed;
+    border-top: none;
+}
+
+
+/*Sets up the border around the two elements that make up the top box
+  (pageTitle and navBar) and the background colour and positions it on the page.*/
 #pageTitle, #navBar {
     background-color: antiquewhite;
     border-style: solid;
 }
 
-/* Sets up the page title portion of the top box */
+/*Sets up the page title which is in the upper portion of the top box.
+  Removes the bottom border to make it blend into the navBar. Sets the size and
+  position of the title.*/
 #pageTitle {
     text-align: center;
     border-bottom: none;
@@ -20,18 +37,95 @@ body {
 }
 
 
-/* Sets up the navigation bar (lower portion of the top box) */
+/*Sets up the navigation bar (lower portion of the top box). Removes the
+  top border to make it blend into the title section.*/
 #navBar {
     border-top: none;
     display: flex;
     justify-content: center;
 }
 
-/*Styles the individual links in the navigation bar*/
+/*Styles the individual links in the navigation bar.*/
 .navLinks {
     padding: 1rem;
     margin-left: 2rem;
 }
+
+/*Following applies to the Index (landing page).*/
+
+/*Sets up the layout of the Index (landing) page. 
+  Comprises of two main columns of content.*/
+#indexPageLayout {
+    display:grid;
+    grid-template-columns: 3fr 1fr;
+    
+}
+
+/*Adds padding and border to both columns.*/
+#leftColumn, #rightColumn {
+    padding: 2em;
+    border-style: dashed;
+}
+
+/*Removes the border from the top and the right of the left column.*/
+#leftColumn {
+    border-right: none;
+    border-top: none;
+}
+
+/*Removes the border from the top of the right column.*/
+#rightColumn {
+    border-top: none;
+
+}
+
+.rightColumnContent {
+    padding-left: 20px;
+    padding-right: 20px;
+}
+
+.rightColumnTitle, #leftColumnTitle {
+    text-align: center;
+    font-size: 1.5em;
+    color:blueviolet;
+    padding-bottom: 10px;
+}
+
+.rightIndividualTitle {
+    padding-top: 5%;
+    padding-bottom: none;
+
+}
+
+.rightIndividualContent {
+    font-size: 0.75em;
+}
+
+.rightColumnContent hr:not(:first-of-type) {
+    width: 50%;
+}
+
+.morePosts {
+    padding-top: 10px;
+    text-align: center;
+}
+
+#leftColumn {
+    
+}
+
+#leftColumnTitle {
+
+}
+
+#leftColumnContent {
+    border-style: solid;
+    background-color: rgb(180, 239, 180);
+}
+
+
+
+/*Following sections apply to Page 2*/
 
 /*Assigns settings to the steps container as a whole*/
 #steps {
@@ -63,19 +157,4 @@ body {
 .odd hr {
     width: 20%;
     margin-right: 0px;
-}
-
-#pageLayout {
-    display:grid;
-    grid-template-columns: 1fr 1fr;
-    
-}
-
-#leftColumn, #rightColumn {
-    padding: 2em;
-    border-style: dashed;
-}
-
-#leftColumn {
-
 }

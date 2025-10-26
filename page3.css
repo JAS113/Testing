@@ -1,0 +1,22 @@
+body {
+    color: azure;
+    width: 99.5vw;
+    height: 99vh;
+    margin: 0;
+    padding: 0;
+    background: url('Dog.jpg') no-repeat center center fixed;
+    background-size: cover;
+}
+
+#title {
+    font-size: 2em;
+    background-color: brown;
+    width: 30%;
+    padding: 1em;
+    margin-top: 30px;
+
+    display: flex;
+    justify-content: center;
+    justify-self: center;
+
+}

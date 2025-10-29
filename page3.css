@@ -1,4 +1,4 @@
-body {
+html {
     color: azure;
     width: 99.5vw;
     height: 99vh;
@@ -13,7 +13,6 @@ body {
     background-color: brown;
     width: 30%;
     padding: 1em;
-    margin-top: 30px;
 
     display: flex;
     justify-content: center;

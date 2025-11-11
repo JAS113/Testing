@@ -23,7 +23,7 @@ function containsNumbers(userInput) {
 function getUserInfoString (infoType) {
     var userInput = prompt ("What is your " + infoType + "?")
             while (containsNumbers(userInput) === true || emptyInput(userInput) === true) {
-            var userInput = prompt ("Invalid input. Please enter characters from A-Z. What is your " + infoType + "?")
+             var userInput = prompt ("Invalid input. Please enter characters from A-Z. What is your " + infoType + "?")
         };
     return userInput
     };

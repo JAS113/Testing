@@ -10,8 +10,9 @@ const extraInfo = [
 
 /*Initialise loggedIn to make user logged out by default */
 let loggedIn = false
-let userName = ""
-let password = ""
+/*let userName;
+let password;*/
+let loggedInUser;
 
 
 /*FUNCTIONS RELATING TO userInput */
@@ -110,7 +111,7 @@ function createNewUser() {
         /*Creates an empty object titled with userName */
         function createEmptyUserObject() {
             let newUserObject = {}
-            userName = createUsername()
+            let userName = createUsername()
             newUserObject[userName] = {}
             return newUserObject
         };
@@ -163,11 +164,16 @@ function assignExtraInfoToUser(userName, object) {
 /*Takes user input of a name already stored in userList and adds extra information to the user object.
   Does not yet check if given username actually exists on the list. */
 function addInfo() {
-    let userInput = prompt("Which user do you want to add more information to?")
-    object = getExtraInformation(extraInfo)
-    assignExtraInfoToUser([userInput], object)
-    return userList
-};
+    /*let userInput = prompt("Which user do you want to add more information to?")*/
+    if (loggedIn === false){
+        logIn()
+    }
+    if (loggedIn === true) {
+        object = getExtraInformation(extraInfo)
+        assignExtraInfoToUser([loggedInUser], object)
+        return userList
+    };
+}
 
 
 /*RELATING TO USERNAME/PASSWORD */
@@ -193,58 +199,60 @@ function askForPassword () {
 Searches the database object to check if the user-inputted data matches.
 Returns true if username and password are correct. */
 function validCredentials(userName, password) {
-    let i = 0
-    for (i=0; i < database.length; i++)
-        currentIndex = database[i]
-        if (currentIndex.userName === userName && currentIndex.password === password){
-            let valid = true
-            return valid
-        } else {
-            let valid = false
-            return valid
+    let databaseIndex = database
+    valid = false
+        for (let i=0; i < database.length; i++) {
+            databaseIndex = database[i]
+            if (databaseIndex.userName === userName && databaseIndex.password === password) {
+                valid = true
+                return valid
+            }
         };
+        return valid
 };
+
+
 
 function logIn () {
     if (loggedIn === true){
-        alert("You are already logged in as " + userName + ". Please log out first if you wish to change user.")
+        alert("You are already logged in " + loggedInUser + ". Please log out first if you wish to change user.")
         return
     }
 
     else if (loggedIn === false) {
-        userName = askForUserName()
-        password = askForPassword()
-        } 
+        let userName = askForUserName()
+        let password = askForPassword()
         if (validCredentials(userName, password) === true) {
             loggedIn = true
-            userName = [userName]
-            password = [password]
-            alert("Welcome " +[userName] + "! You are now logged in.")
-            return loggedIn
+            loggedInUser = userName
+            alert("Welcome " +[loggedInUser] + "! You are now logged in.")
+            return (loggedIn, loggedInUser)
         } else {
             loggedIn = false
             alert("Incorrect username or password. Please try again.")
             return loggedIn
-    }
+    }}
+}
 
 function logOut () {
     loggedIn = false
     alert("You are now logged out.")
-    return loggedIn
-}
-}
+    loggedInUser = ""
+    return (loggedIn, loggedInUser)
+};
 
 /*Takes a username and password as an input. (E.g. "vickygrey", "password123")
   Returns the user object from userList if the credentials are valid.
   Does not change userList.*/
-function findUser(loggedIn) {
-        while (loggedIn === false){
+function findUser() {
+        if (loggedIn === false){
             logIn()
-                if (loggedIn === true) {}
-                    let userProfile = userList[userName]
-                    let showProfile = JSON.stringify(userProfile)
-                    alert([showProfile])
-                    return userProfile;
+        }
+        if (loggedIn === true) {
+            let userProfile = userList[loggedInUser]
+            let showProfile = JSON.stringify(userProfile)
+            alert([showProfile])
+            return userProfile;
             }
     };
 
@@ -269,11 +277,15 @@ function findUser(loggedIn) {
         findUser()
     })
 
-    /*Allows user to click the 'Log In' button on page 4 and run validate function */
+    /*Allows user to click the 'Log In' button on page 4 and run the logIn() function */
     let logInButton = document.getElementById("logIn")
     logInButton.addEventListener("click", function(){
         logIn()
     })
 
+    let logOutButton = document.getElementById("logOut")
+    logOutButton.addEventListener("click", function(){
+        logOut ()
+    })
 
 

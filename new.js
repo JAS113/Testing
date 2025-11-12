@@ -1,3 +1,5 @@
+/*INITIALISE */
+
 /*Initialise userList and database */
 const userList = []
 const database = []
@@ -8,11 +10,10 @@ const extraInfo = [
     "favourite animal"
 ]
 
-/*Initialise loggedIn to make user logged out by default */
+/*Initialise loggedIn and loggedInUser to make user logged out by default */
 let loggedIn = false
-/*let userName;
-let password;*/
 let loggedInUser;
+
 
 
 /*FUNCTIONS RELATING TO userInput */
@@ -54,7 +55,7 @@ function invalidMustContainNumbers (userInput) {
 function getUserInputTextOnly(infoType) {
     let userInput = ""
     while (invalidTextOnlyInput(userInput) === true) {
-        let userInput = prompt ("What is your " + infoType + "?") 
+        let userInput = prompt ("What is your " + infoType + "? (Answer must not be blank or contain numbers.)") 
             if (invalidTextOnlyInput(userInput) === false) {
                 const validInput = userInput
                 return validInput
@@ -67,7 +68,7 @@ function getUserInputTextOnly(infoType) {
 function getUserInputIncludesNumbers(infoType) {
     let userInput = ""
     while (invalidMustContainNumbers(userInput) === true) {
-        let userInput = prompt ("What is your " + infoType + "?") 
+        let userInput = prompt ("What is your " + infoType + "? (Answer must contain numbers)") 
             if (invalidMustContainNumbers(userInput) === false) {
                 const validInput = userInput
                 return validInput
@@ -128,9 +129,9 @@ function createNewUser() {
         function addToUserList () {
             userObject = mergeObjects()
             Object.assign(userList, userObject)
-            userList.length = userList.length + 1
             return userList
         };
+        alert("Sign up complete! Your username is " + createUsername())
 
     return addToUserList(), addToDatabase()
 };
@@ -164,7 +165,6 @@ function assignExtraInfoToUser(userName, object) {
 /*Takes user input of a name already stored in userList and adds extra information to the user object.
   Does not yet check if given username actually exists on the list. */
 function addInfo() {
-    /*let userInput = prompt("Which user do you want to add more information to?")*/
     if (loggedIn === false){
         logIn()
     }
@@ -194,6 +194,18 @@ function askForPassword () {
     return password
 };
 
+function databaseIsEmpty (database) {
+    if (database.length === 0) {
+        return true
+    }
+}
+
+function checkIfDatabaseIsEmpty() {
+    if (databaseIsEmpty(database) === true) {
+        alert("No available users. Please register first.")
+        return true
+    }
+}
 
 /*Takes a username and password as an input. (E.g. "vickygrey", "password123") 
 Searches the database object to check if the user-inputted data matches.
@@ -201,7 +213,9 @@ Returns true if username and password are correct. */
 function validCredentials(userName, password) {
     let databaseIndex = database
     valid = false
-        for (let i=0; i < database.length; i++) {
+    if (checkIfDatabaseIsEmpty() === true) {
+        return
+    } else for (let i=0; i < database.length; i++) {
             databaseIndex = database[i]
             if (databaseIndex.userName === userName && databaseIndex.password === password) {
                 valid = true
@@ -212,14 +226,15 @@ function validCredentials(userName, password) {
 };
 
 
-
+/*Logs the user in.
+  If user is already logged in, will display the current loggedInUser instead. */
 function logIn () {
     if (loggedIn === true){
         alert("You are already logged in " + loggedInUser + ". Please log out first if you wish to change user.")
         return
-    }
-
-    else if (loggedIn === false) {
+    } else if (checkIfDatabaseIsEmpty() === true) {
+        return
+    } else if (loggedIn === false) {
         let userName = askForUserName()
         let password = askForPassword()
         if (validCredentials(userName, password) === true) {
@@ -234,21 +249,29 @@ function logIn () {
     }}
 }
 
+/*Logs the user out. 
+  Resets the loggedIn variable to false and the loggedInUser variable to empty. */
 function logOut () {
-    loggedIn = false
-    alert("You are now logged out.")
-    loggedInUser = ""
-    return (loggedIn, loggedInUser)
+            if (checkIfDatabaseIsEmpty() === true) {
+                return
+            } else {
+                alert("Thank you, " + loggedInUser + ". You are now logging out.")
+                loggedIn = false
+                loggedInUser = ""
+                return (loggedIn, loggedInUser)
+            }
 };
 
-/*Takes a username and password as an input. (E.g. "vickygrey", "password123")
-  Returns the user object from userList if the credentials are valid.
-  Does not change userList.*/
+
+/*Checks that database contains user. If not, asks user to register first.
+  Checks if the user is logged in. If they are not, logs them in.
+  Returns the user object from userList. Does not change userList.*/
 function findUser() {
-        if (loggedIn === false){
+        if (checkIfDatabaseIsEmpty() === true) {
+            return
+        } if (loggedIn === false){
             logIn()
-        }
-        if (loggedIn === true) {
+        } else if (loggedIn === true) {
             let userProfile = userList[loggedInUser]
             let showProfile = JSON.stringify(userProfile)
             alert([showProfile])
